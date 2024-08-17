@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setInterval</title>
+    <style>
+        body{
+            background-color: #212121;
+            color: #fff;
+        }
+    </style>
+    <body>
+        <h1>Hi Web Developers!!</h1>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+       
+    </body>
+    <script>
+       let start = document.querySelector('#start')
+       let stop = document.querySelector('#stop')
+       let h1 = document.querySelector('h1')
+        let randomNo = Math.floor(Math.random()*10+1)
+        start.addEventListener('click',function () {
+            setInterval(() => {
+            h1.innerHTML= `${randomNo}`
+            console.log('start');
+            
+        }, 2000);
+        })
+        stop.addEventListener('click',function() {
+            clearInterval(start)
+            console.log('stop');
+            
+        })
+     
+    </script>
+</html>

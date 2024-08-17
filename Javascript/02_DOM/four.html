@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoM || 4</title>
+</head>
+<body style="background-color: #212121;color: #fff;">
+    <div class="parent">
+        <li>javascript</li>
+    </div>
+</body>
+<script>
+ function AddLang(langName){
+    const li = document.createElement('li');
+    li.innerHTML = `${langName}`
+    document.querySelector('.parent').appendChild(li)
+ }
+ AddLang('Java')
+ AddLang('Python')
+ function OptiLang(langName) {
+    const li = document.createElement('li')
+    li.appendChild(document.createTextNode(langName))
+    document.querySelector('.parent').appendChild(li)
+ }
+OptiLang("React")
+OptiLang("Node")
+
+//edit
+const first_li = document.querySelector('li:first-child')
+first_li.innerHTML = 'mojo'
+const li = document.createElement('li')
+li.textContent = "VIshal"
+first_li.replaceWith(li)
+// first_li.outerHTML = "<li>Ashish</li>"
+
+//remove
+const last = document.querySelector('li:last-child')
+last.remove()
+
+
+</script>
+</html>

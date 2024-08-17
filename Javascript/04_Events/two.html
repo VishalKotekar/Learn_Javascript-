@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout and clearTimeout</title>
+</head>
+<style>
+    body{
+        background-color: #212121;
+        color: #fff;
+    }
+</style>
+<body>
+    <h1>Hi Web Developers!!</h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    let h1 = document.querySelector('h1')
+     
+    const changeText = 
+    setTimeout(function(){
+        h1.innerHTML='Hii Vishal!!'
+    },2000)
+    
+    let stop = document.querySelector('#stop')
+    stop.addEventListener('click',function() {
+        clearTimeout(changeText)
+        console.log('stopped');
+        
+    })
+</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChangeBgColor</title>
+    <style>
+        body {
+            background-color: #212121;
+            color: #fff;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Change Background Color By setInterval</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+        // Function to generate a random hex color
+        function generateRandomColor() {
+            const hexCharacters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += hexCharacters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Function to start changing the background color
+        function startColorChange() {
+            if (!intervalId) {
+                intervalId = setInterval(() => {
+                    document.body.style.backgroundColor = generateRandomColor();
+                }, 1000);
+            }
+        }
+
+        // Function to stop changing the background color
+        function stopColorChange() {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+
+        let intervalId = null;
+
+        // Set up event listeners
+        function setUpEventListeners() {
+            document.querySelector('#start').addEventListener('click', startColorChange);
+            document.querySelector('#stop').addEventListener('click', stopColorChange);
+        }
+
+        // Initialize event listeners
+        setUpEventListeners();
+    </script>
+</body>
+</html>

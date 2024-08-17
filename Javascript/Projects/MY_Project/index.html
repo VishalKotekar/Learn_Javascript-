@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            max-width: 100%;
+            width: 500px;
+            margin: 0 auto;
+            background-color: #474747;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            transition: box-shadow 0.5s ease-in-out;
+            padding: 20px;
+            color: #fff;
+        }
+        form {
+            font-size: large;
+        }
+        label {
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+        input {
+            display: block;
+            margin-bottom: 20px;
+            width: calc(100% - 20px);
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #333;
+            color: #fff;
+            font-size: large;
+        }
+        .button {
+            height: 50px;
+            width: 150px;
+            margin-top: 30px;
+            display: block;
+            margin-left: calc(50% - 75px);
+            border-radius: 10px;
+            background-color: #24a0ed;
+            border: transparent;
+            color: #fff;
+            cursor: pointer;
+            transition: box-shadow 0.5s ease-in-out;
+        }
+
+        /* Custom Alert Styles */
+        .custom-alert {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f44336;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .custom-alert.show {
+            display: block;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .custom-alert.hide {
+            opacity: 0;
+            transform: translateX(-50%) translateY(-20px);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+            .button {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            form {
+                font-size: medium;
+            }
+            input {
+                padding: 10px;
+            }
+            .button {
+                height: 45px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body style="background-color: #212121; color:#fff;">
+    <div class="container">
+        <h1 style="text-align: center; background-color: #212121;">Application Form</h1>
+        
+        <form id="applicationForm">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name">
+            
+            <label for="address">Address:</label>
+            <input type="text" name="address" id="address">
+            
+            <label for="number">Mobile Number:</label>
+            <input type="number" name="number" id="number">
+            
+            <label for="date">Date Of Birth:</label>
+            <input type="date" name="date" id="date">
+        </form>
+    
+        <button type="button" class="button">Submit</button>
+    </div>
+
+    <!-- Custom Alert Box -->
+    <div id="customAlert" class="custom-alert">Please fill out all fields.</div>
+    
+    <script>
+        const container = document.querySelector('.container');
+        const button = document.querySelector('.button');
+        const form = document.getElementById('applicationForm');
+        const customAlert = document.getElementById('customAlert');
+
+        button.addEventListener('click', function() {
+            // Get all input fields
+            const inputs = form.querySelectorAll('input');
+            let allFilled = true;
+
+            // Check if all fields are filled
+            inputs.forEach(input => {
+                if (input.value.trim() === '') {
+                    allFilled = false;
+                }
+            });
+
+            if (!allFilled) {
+                // Show the custom alert box
+                customAlert.classList.remove('hide');
+                customAlert.classList.add('show');
+
+                // Hide the alert after 3 seconds
+                setTimeout(() => {
+                    customAlert.classList.remove('show');
+                    customAlert.classList.add('hide');
+                }, 3000); // Hide alert after 3 seconds
+                return; // Exit function without processing
+            }
+
+            // Apply the box-shadow effect
+            container.style.boxShadow = '5px 5px 35px 5px lightskyblue';
+            button.style.boxShadow = '5px 5px 35px 5px lightskyblue';
+
+            // Collect form values and display them
+            const formData = new FormData(form);
+            let displayText = '<h2>Submitted Information:</h2><ul>';
+            
+            for (const [key, value] of formData.entries()) {
+                displayText += `<li><strong>${key.charAt(0).toUpperCase() + key.slice(1)}:</strong> ${value}</li>`;
+            }
+            
+            displayText += '</ul>';
+            
+            // Update container with form values
+            container.innerHTML = displayText;
+            
+            // Optionally, remove the shadow after some time
+            setTimeout(() => {
+                container.style.boxShadow = 'none';
+                button.style.boxShadow = 'none';
+            }, 2000); // Remove shadow after 2 seconds
+        });
+    </script>
+</body>
+</html>

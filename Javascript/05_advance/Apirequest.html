@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<link lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121;color: #fff;">
+
+</body>
+<script>
+    const ApiReqUrl = 'https://api.github.com/users/vishalKotekar'
+    const XML_Req = new XMLHttpRequest()
+    XML_Req.open('GET',ApiReqUrl) 
+    XML_Req.onreadystatechange = function () {
+        console.log(XML_Req.readyState);
+        if (XML_Req.readyState === 4) {
+            const data = JSON.parse(this.responseText)
+            const div = document.createElement('div')
+            const img = document.createElement('img')
+            const h1 = document.createElement('h1')
+            div.id = 'print'
+            console.log(data);
+            img.src = "https://avatars.githubusercontent.com/u/108614877?v=4";
+            h1.innerHTML = `${data.name}`
+            div.innerHTML= `Followers:${data.followers}`
+            document.body.appendChild(img)
+            document.body.appendChild(h1)
+            document.body.appendChild(div)
+        }
+    } 
+
+    
+    XML_Req.send()
+    
+     
+</script>
+</html>

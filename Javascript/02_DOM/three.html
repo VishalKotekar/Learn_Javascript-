@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121;color: #fff;">
+    
+</body>
+<script>
+    const h1 = document.createElement('h1')
+    h1.className = "heading"
+    h1.id = "myId"
+    const addText = document.createTextNode("Vishal")
+    h1.appendChild(addText)
+    h1.style.backgroundColor = "red"
+    h1.style.padding = "1px"
+    document.body.appendChild(h1)
+    console.log(h1);
+</script>
+</html>
